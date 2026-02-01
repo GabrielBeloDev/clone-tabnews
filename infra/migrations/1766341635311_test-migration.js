@@ -2,6 +2,8 @@
 
 exports.shorthands = undefined;
 
-exports.up = (pgm) => {};
+// eslint-disable-next-line no-unused-vars
+exports.up = (_pgm) => {};
 
-exports.down = (pgm) => {};
+// eslint-disable-next-line no-unused-vars
+exports.down = (_pgm) => {};
