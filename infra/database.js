@@ -1,5 +1,10 @@
 import { Client } from "pg";
 
+const database = {
+  query,
+  getNewClient,
+};
+
 async function query(queryObject) {
   let client;
   try {
@@ -28,11 +33,6 @@ async function getNewClient() {
   return client;
 }
 
-export default {
-  query,
-  getNewClient,
-};
-
 function getSSLValues() {
   if (process.env.POSTGRES_CA) {
     return {
@@ -46,3 +46,5 @@ function getSSLValues() {
 
   return process.env.NODE_ENV === "production" ? true : false;
 }
+
+export default database;
