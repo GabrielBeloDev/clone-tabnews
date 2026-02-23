@@ -1,9 +1,5 @@
 import retry from "async-retry";
 
-const orchestrator = {
-  waitForAllServices,
-};
-
 async function waitForAllServices() {
   await waitForWebServer();
 
@@ -23,4 +19,12 @@ async function waitForAllServices() {
   }
 }
 
+async function clearDatabase() {
+  await orchestrator.clearDatabase();
+}
+
+const orchestrator = {
+  waitForAllServices,
+  clearDatabase,
+};
 export default orchestrator;
