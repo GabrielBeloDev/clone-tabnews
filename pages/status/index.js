@@ -12,6 +12,7 @@ export default function Status() {
     <>
       <h1>Status</h1>
       <UpdatedAt />
+      <Database />
     </>
   );
 }
@@ -30,4 +31,39 @@ function UpdatedAt() {
   }
 
   return <p>última atualização: {updatedAtText}</p>;
+}
+
+function Database() {
+  const { isLoading, data } = useQuery({
+    queryKey: ["status"],
+    queryFn: fetchAPI,
+    refetchInterval: 2000,
+  });
+
+  let databaseStatusInformation = "carregando";
+
+  if (!isLoading && data) {
+    databaseStatusInformation = (
+      <div>
+        <div>
+          <span>Versão:</span> {data.dependecies.database.version}
+        </div>
+        <div>
+          <span>Conexões abertas:</span>{" "}
+          {data.dependecies.database.open_connections}
+        </div>
+        <div>
+          <span>Conexões máximas:</span>{" "}
+          {data.dependecies.database.max_connections}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <h2>Banco de Dados</h2>
+      <div>{databaseStatusInformation}</div>
+    </>
+  );
 }
